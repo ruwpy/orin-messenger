@@ -5,6 +5,7 @@ import { db } from "./db";
 
 export const authOptions: NextAuthOptions = {
   adapter: UpstashRedisAdapter(db),
+  secret: process.env.NEXT_AUTH_SECRET,
   session: {
     strategy: "jwt",
   },
@@ -27,10 +28,10 @@ export const authOptions: NextAuthOptions = {
       }
 
       return {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        picture: user.image,
+        id: dbUser.id,
+        email: dbUser.email,
+        name: dbUser.name,
+        picture: dbUser.image,
       };
     },
     session: async ({ session, token }) => {
