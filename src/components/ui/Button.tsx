@@ -5,8 +5,8 @@ import { Icons } from "../icons";
 const button = cva("relative p-2 disabled:cursor-not-allowed", {
   variants: {
     variant: {
-      primary: "bg-midnight text-mint hover:bg-[#4a4848] disabled:bg-[#4a4848]",
-      secondary: "bg-mint text-midnight hover:bg-[#43ce9e] disabled:bg-[#43ce9e]",
+      primary: "bg-midnight text-mint hover:bg-midnight/70 disabled:bg-midnight/70",
+      secondary: "bg-mint text-midnight hover:bg-mint/70 disabled:bg-mint/70",
     },
   },
   defaultVariants: {
