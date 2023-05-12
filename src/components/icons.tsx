@@ -1,7 +1,18 @@
-import { Loader2, LucideProps } from "lucide-react";
+import {
+  Loader2,
+  ArrowLeftFromLine,
+  LucideProps,
+  MessageSquare,
+  MessageSquarePlus,
+  Users2,
+} from "lucide-react";
 
 export const Icons = {
+  message: MessageSquare,
+  requests: MessageSquarePlus,
+  friends: Users2,
   spinner: Loader2,
+  expand: ArrowLeftFromLine,
   github: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
