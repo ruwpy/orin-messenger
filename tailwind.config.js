@@ -6,12 +6,12 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      mint: '#54FFC4',
-      cotton: '#EAB1FF',
-      midnight: '#171719'
-    },
     extend: {
+      colors: {
+        mint: '#54FFC4',
+        cotton: '#EAB1FF',
+        midnight: '#171719'
+      }
     }
   },
   plugins: [],
