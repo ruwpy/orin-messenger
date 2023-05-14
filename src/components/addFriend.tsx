@@ -13,6 +13,7 @@ type FormData = z.infer<typeof addFriendValidation>;
 
 const AddFriend = () => {
   const [showAddFriend, setShowAddFriend] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -23,9 +24,10 @@ const AddFriend = () => {
 
   const addFriend = async (email: string) => {
     try {
+      setIsLoading(true);
       const validatedEmail = addFriendValidation.parse({ email });
 
-      // await axios.post("/api/friends/add", { email: validatedEmail });
+      await axios.post("/api/friends/add", { email: validatedEmail });
       toast.success("Request has sent!");
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -40,6 +42,7 @@ const AddFriend = () => {
 
       toast.error("Something went wrong...");
     } finally {
+      setIsLoading(false);
       setShowAddFriend(false);
       resetField("email");
     }
@@ -59,7 +62,7 @@ const AddFriend = () => {
         <Icons.plus width={20} height={20} className={showAddFriend ? "rotate-45" : ""} />
       </Button>
       {showAddFriend && (
-        <div className="absolute top-14 left-4 right-4 p-3 bg-midnight border border-zinc-800 rounded-md">
+        <div className="absolute top-10 left-0 right-0 p-3 bg-midnight border border-zinc-800 rounded-md">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="relative flex flex-col gap-2">
               <label htmlFor="email" className="opacity-60">
@@ -73,7 +76,9 @@ const AddFriend = () => {
                   type="text"
                   placeholder="joeshmoe@example.com"
                 />
-                <Button variant="secondary">Add</Button>
+                <Button variant="secondary">
+                  {isLoading ? <Icons.spinner color="black" className="animate-spin" /> : "Add"}
+                </Button>
               </div>
               {errors.email?.message && (
                 <span className="mt-2 text-red-600">{errors.email?.message}</span>
