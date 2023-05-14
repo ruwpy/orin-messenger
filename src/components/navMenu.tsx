@@ -13,14 +13,14 @@ const NavMenu = ({ user }: { user: User }) => {
     <div
       className={`${
         navExpanded ? "w-60" : "w-14"
-      } relative h-[100dvh] bg-midnight border-r-[1px] border-zinc-800 p-2 overflow-hidden`}
+      } flex-shrink-0 relative h-[100dvh] bg-midnight border-r-[1px] border-zinc-800 p-2 overflow-hidden`}
     >
       <div className={`flex flex-col gap-2 mt-2`}>
         <Link
           className={`text-white font-medium text-xl flex gap-2 items-center hover:bg-zinc-800 rounded-md  ${
             navExpanded ? "mx-0 w-full" : "mx-auto"
           }`}
-          href="/chats"
+          href="/dashboard/chats"
         >
           <span className="flex justify-center items-center w-10 h-10">
             <Icons.message width={20} height={20} color="white" />
@@ -32,7 +32,7 @@ const NavMenu = ({ user }: { user: User }) => {
           className={`text-white font-medium text-xl flex gap-2 items-center hover:bg-zinc-800 rounded-md  ${
             navExpanded ? "mx-0 w-full" : "mx-auto"
           }`}
-          href="/friends"
+          href="/dashboard/friends"
         >
           <span className="flex justify-center items-center w-10 h-10">
             <Icons.friends width={20} height={20} color="white" />
@@ -44,7 +44,7 @@ const NavMenu = ({ user }: { user: User }) => {
           className={`text-white font-medium text-xl flex gap-2 items-center hover:bg-zinc-800 rounded-md  ${
             navExpanded ? "mx-0 w-full" : "mx-auto"
           }`}
-          href="/requests"
+          href="/dashboard/requests"
         >
           <span className="flex justify-center items-center w-10 h-10">
             <Icons.requests width={20} height={20} color="white" />
@@ -52,19 +52,26 @@ const NavMenu = ({ user }: { user: User }) => {
           {navExpanded && <span>Requests</span>}
         </Link>
       </div>
-      <div className="absolute m-2 bottom-0 right-0 flex flex-col gap-4">
-        <span>
+      <div
+        className={`absolute p-2 bottom-0 right-0 flex gap-2 items-center ${
+          navExpanded ? "flex-row w-full justify-between" : "flex-col"
+        }`}
+      >
+        <span className="flex gap-2 p-1 items-center cursor-pointer hover:bg-zinc-800 rounded-md">
           <Image
-            width={40}
-            height={40}
-            className="flex justify-center items-center cursor-pointer hover:bg-zinc-800 rounded-md"
+            width={36}
+            height={36}
+            className="flex justify-center items-center bg-zinc-400 rounded-md"
             src={user.image!}
             alt="user profile picture"
           />
+          <span className="pr-2 whitespace-nowrap overflow-hidden text-ellipsis">
+            {navExpanded && user.name}
+          </span>
         </span>
         <span
           onClick={() => setNavExpanded((prev) => !prev)}
-          className="w-10 h-10 flex justify-center items-center cursor-pointer hover:bg-zinc-800 rounded-md"
+          className="w-10 h-10 flex flex-shrink-0 justify-center items-center cursor-pointer hover:bg-zinc-800 rounded-md"
         >
           <Icons.expand
             color="white"
