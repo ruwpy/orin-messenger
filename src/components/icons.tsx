@@ -1,4 +1,7 @@
 import {
+  X,
+  Check,
+  Plus,
   Loader2,
   ArrowLeftFromLine,
   LucideProps,
@@ -8,6 +11,9 @@ import {
 } from "lucide-react";
 
 export const Icons = {
+  cross: X,
+  check: Check,
+  plus: Plus,
   message: MessageSquare,
   requests: MessageSquarePlus,
   friends: Users2,

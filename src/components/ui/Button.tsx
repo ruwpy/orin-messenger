@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Icons } from "../icons";
 
-const button = cva("relative p-2 disabled:cursor-not-allowed", {
+const button = cva("relative p-2 disabled:cursor-not-allowed rounded-md font-medium", {
   variants: {
     variant: {
       primary: "bg-midnight text-mint hover:bg-midnight/70 disabled:bg-midnight/70",
