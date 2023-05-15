@@ -8,4 +8,6 @@ const envVariables = z.object({
   UPSTASH_REDIS_REST_TOKEN: z.string(),
 });
 
-export const env = envVariables.parse(process.env);
+const env = envVariables.parse(process.env);
+
+export default env;
