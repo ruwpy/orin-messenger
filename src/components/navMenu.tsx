@@ -1,13 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icons } from "./icons";
 import Link from "next/link";
 import { User } from "next-auth";
 import Image from "next/image";
+import { fetchRedis } from "@/lib/redis";
 
 const NavMenu = ({ user }: { user: User }) => {
   const [navExpanded, setNavExpanded] = useState(false);
+  const [friendRequestsCount, setFriendRequestsCount] = useState(0);
+
+  useEffect(() => {
+    const getRequests = async () => {
+      const requests = (
+        (await fetchRedis("smembers", `user:${user.id}:incoming_friend_requests`)) as string[]
+      ).length;
+
+      setFriendRequestsCount(requests);
+    };
+
+    getRequests();
+  });
 
   return (
     <div
@@ -41,7 +55,7 @@ const NavMenu = ({ user }: { user: User }) => {
         </Link>
 
         <Link
-          className={`text-white font-medium text-xl flex gap-2 items-center hover:bg-zinc-800 rounded-md  ${
+          className={`relative text-white font-medium text-xl flex gap-2 items-center hover:bg-zinc-800 rounded-md  ${
             navExpanded ? "mx-0 w-full" : "mx-auto"
           }`}
           href="/dashboard/requests"
@@ -50,6 +64,15 @@ const NavMenu = ({ user }: { user: User }) => {
             <Icons.requests width={20} height={20} color="white" />
           </span>
           {navExpanded && <span>Requests</span>}
+          {friendRequestsCount !== 0 && (
+            <span
+              className={`${
+                navExpanded ? "" : "absolute -top-[2px] -right-[2px]"
+              } w-5 h-5 flex justify-center items-center rounded-md bg-mint text-midnight text-xs`}
+            >
+              {friendRequestsCount}
+            </span>
+          )}
         </Link>
       </div>
       <div
