@@ -10,8 +10,6 @@ export const POST = async (req: Request) => {
     const { email: userEmail } = addFriendValidation.parse(body.email);
 
     const idToAdd = await fetchRedis("get", `user:email:${userEmail}`);
-    console.log(userEmail);
-
     const user = await getUser();
 
     // check if user logged in
