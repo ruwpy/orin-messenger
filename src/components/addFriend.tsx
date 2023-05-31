@@ -40,7 +40,7 @@ const AddFriend = () => {
         return;
       }
 
-      toast.error("Something went wrong...");
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
       setShowAddFriend(false);

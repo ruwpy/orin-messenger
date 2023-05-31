@@ -7,7 +7,7 @@ const button = cva(
   {
     variants: {
       variant: {
-        primary: "bg-midnight text-mint hover:bg-midnight/70 disabled:bg-midnight/70",
+        primary: "bg-midnight text-mint hover:bg-zinc-800 disabled:bg-midnight/70",
         secondary: "bg-mint text-midnight hover:bg-mint/70 disabled:bg-mint/70",
       },
     },

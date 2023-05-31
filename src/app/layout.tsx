@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               color: "var(--midnight)",
               fontSize: "20px",
               padding: "8px 12px 8px 22px",
+              textAlign: "center",
             },
             success: {
               icon: <Icons.check />,
